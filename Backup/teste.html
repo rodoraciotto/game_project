@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rotate with Mouse</title>
+  <style>
+    canvas {
+      border: #333 10px solid;
+    }
+    body {
+      padding: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="550px" height="350px"></canvas>
+
+  <script>
+    let canvas = document.querySelector("#myCanvas");
+    let context = canvas.getContext("2d");
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // deal with page offsets
+    let canvasPos = getPosition(canvas);
+
+    let x_midpoint = canvas.width / 2;
+    let y_midpoint = canvas.height / 2;
+
+    canvas.addEventListener("mousemove", setMousePosition, false);
+
+    function setMousePosition(e) {
+      mouseX = e.clientX - canvasPos.x;
+      mouseY = e.clientY - canvasPos.y;
+
+      // ensure we update only when a frame update is happening
+      requestAnimationFrame(update);
+    }
+
+    let rectangleWidth = 50;
+    let rectangleHeight = 50;
+
+    function update() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      context.fillStyle = "#F0C808";
+      context.fillRect(0, 0, canvas.width,canvas.height);
+
+      let diffX = mouseX - x_midpoint;
+      let diffY = mouseY - y_midpoint;
+
+      // shift starting point to middle of canvas
+      context.setTransform(1, 0, 0, 1, x_midpoint, y_midpoint);
+
+      // rotate based on the mouse position
+      context.rotate(Math.atan2(diffY, diffX));
+
+      // the triangle
+      context.beginPath();
+      context.moveTo(-15, -15);
+      context.lineTo(-15, 15);
+      context.lineTo(30, 0);
+      context.closePath();
+  
+      // the fill color
+      context.fillStyle = "#315659";
+      context.fill();
+
+      // reset transform
+      context.setTransform(1, 0, 0, 1, 0, 0);
+
+      // the line
+      context.beginPath();
+      context.moveTo(mouseX, mouseY);
+      context.lineTo(x_midpoint, y_midpoint);
+
+      context.lineWidth = 2;
+      context.setLineDash([2, 5]);
+      context.strokeStyle = "#315659";
+      context.stroke();
+    }
+    update();
+
+    // Deal with page positioning shenanigans
+    // https://www.kirupa.com/html5/get_element_position_using_javascript.htm
+    function getPosition(el) {
+      let xPosition = 0;
+      let yPosition = 0;
+
+      while (el) {
+        xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+        yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
+        el = el.offsetParent;
+      }
+      return {
+        x: xPosition,
+        y: yPosition
+      };
+    }
+  </script>
+
+</body>
+
+</html>
