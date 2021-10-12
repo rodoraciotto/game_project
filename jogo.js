@@ -59,18 +59,56 @@
 
             
         }
+
+        
             
             var P_TL = 0
             var P_BR = 600
 
-            var P_TR = 0
-            var P_BL = 0
+            var TRX = 600
+            var TRY = 0
+
+            var BLX = 0
+            var BLY = 600
             
             var cor_TL = "yellow"
             var cor_BR = "red"
+            var cor_TR = "blue"
+            var cor_BL = "green"
 
             var jogo = 0
             var c = 0
+
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            function aleatorizar_cores() {
+                lista = []
+                let numero = getRandomInt(0, 4)
+                while (true) {
+                    if (numero > 3){
+                        numero = 0
+                    }
+
+                    if (lista.length == 4){
+                        break
+                    }
+
+                    lista.push(numero)
+                    numero++
+                }
+                    
+                    
+                
+                cor_TR = cores[lista[0]]
+                cor_BR = cores[lista[1]]
+                cor_BL = cores[lista[2]]
+                cor_TL = cores[lista[3]]
+            }
+
         function jogar() {    
             // Objeto TOP LEFT
             ctx.fillStyle = "white"
@@ -105,6 +143,40 @@
             ctx.fill()
             P_BR -= 1
 
+            // Objeto TOP RIGHT
+            ctx.fillStyle = "white"
+            ctx.strokeStyle = circulo.cor
+            ctx.beginPath();
+            ctx.arc(TRX+2,TRY-2, circulo.r, 1.45*Math.PI, 0.04*Math.PI);
+            ctx.fill()
+
+            ctx.fillStyle = cor_TR
+            ctx.beginPath();
+            ctx.arc(TRX,TRY, circulo.r, 1.5*Math.PI, 0*Math.PI);
+            ctx.moveTo(TRX,TRY)
+            ctx.lineTo(TRX + 25,TRY)
+            ctx.lineTo(TRX,TRY - 25)
+            ctx.fill()
+            TRX -= 1
+            TRY += 1
+
+            // Objeto TOP RIGHT
+            ctx.fillStyle = "white"
+            ctx.strokeStyle = circulo.cor
+            ctx.beginPath();
+            ctx.arc(BLX-2,BLY+2, circulo.r, 0.45*Math.PI, 1.04*Math.PI);
+            ctx.fill()
+
+            ctx.fillStyle = cor_BL
+            ctx.beginPath();
+            ctx.arc(BLX,BLY, circulo.r, 0.5*Math.PI, 1*Math.PI);
+            ctx.moveTo(BLX,BLY)
+            ctx.lineTo(BLX - 25,BLY)
+            ctx.lineTo(BLX,BLY + 25)
+            ctx.fill()
+            BLX += 1
+            BLY -= 1
+
             // Se objetos estiverem no centro
                 if (P_BR == 300){
                     if (cor_BR == cores[1]){
@@ -130,11 +202,40 @@
                         requestAnimationFrame(desenho)
                     }
                 }
-                
+                if (TRX == 300 && TRY == 300){
+                    if (cor_TR == cores[0]){
+                        TRX = 600
+                        TRY = 0
+                        requestAnimationFrame(desenho)
+                        jogo = 1
+                    }
+                    else{
+                        TRX = 300
+                        TRY = 300
+                        c = 1
+                        requestAnimationFrame(desenho)
+                    }
+                }
+                if (BLX == 300 && BLY == 300){
+                    if (cor_BL == cores[2]){
+                        BLX = 0
+                        BLY = 600
+                        requestAnimationFrame(desenho)
+                        jogo = 1
+                    }
+                    else{
+                        BLX = 300
+                        BLY = 300
+                        c = 1
+                        requestAnimationFrame(desenho)
+                    }
+                }
+
                 // Se o player acertar
                 // aumentar a velocidade//randomizar cores
                 if (jogo == 1){
                     jogo = 0
+                    aleatorizar_cores()
                     requestAnimationFrame(jogar)
                     requestAnimationFrame(jogar)
                 }
