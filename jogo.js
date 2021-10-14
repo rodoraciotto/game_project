@@ -14,7 +14,8 @@
             r: 25,
             cor: "black"
         }
-
+        var pontos = -1
+        var pontos_novo = 0
         var cores = ["blue","red","green","yellow"]
         function desenho() {
             ctx.fillStyle = cores[0]
@@ -57,7 +58,13 @@
             ctx.lineTo(300,275)
             ctx.fill()
 
-            
+            if (pontos != pontos_novo || pontos == -1){
+                ctx.clearRect ( 0 , 0 ,canvas.height , canvas.width/10 )
+                pontos = pontos_novo
+                ctx.fillStyle = "black"
+                ctx.font = "30px Arial"
+                ctx.fillText("Pontos: "+ pontos.toString(),230, 30)
+            }
         }
 
         
@@ -240,6 +247,7 @@
                     aleatorizar_cores()
                     requestAnimationFrame(jogar)
                     requestAnimationFrame(jogar)
+                    pontos_novo += 1
                 }
                 else if(jogo == 0 && c == 0){
                     requestAnimationFrame(jogar)
@@ -286,7 +294,7 @@
         function iniciar() {
             recarregarPagina()
         }
-        
+
         // verifica que a página foi atualizada
         if (recarregou) {
             sessionStorage.removeItem("recarregou"); // remove a variável
@@ -295,3 +303,4 @@
 
 
         desenho()
+        pontos = 0
