@@ -4,14 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
-    <script src="jogo.js"></script>
     <link rel="stylesheet" href="jogo.css">
 </head>
 <body>
-    <canvas id="myCanvas" width="600" height="600"
-style="border:1px solid black;">
-Your browser does not support the canvas element.
-</canvas>
+    <nav class="nav">
+        <div class="container">
+            <div class="header">
+                <a class="title">Nome do Jogo</a>
+                <div class="pages">
+                    <a href="dev.html"><button class="btn">Desenvolvedores</button></a>
+                    <a href="home.html"><button class="btn">Como Jogar</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="bloco">
+    </div>
+    <div class="row">
+        <div class="container">
+            <div id="test">
+                <a id="iniciar"><button onclick="iniciar()"class="btn">Jogar</button></a>
+                <canvas id="myCanvas" width="600" height="600"
+                style="border:1px solid black;">
+                Your browser does not support the canvas element.
+                </canvas>
+            </div>
+        </div>
+    </div>
+       
+    <script src="jogo.js"></script>
 </body>
 </html>

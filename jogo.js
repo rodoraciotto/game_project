@@ -109,12 +109,14 @@
                 cor_TL = cores[lista[3]]
             }
 
+        var velocidade = 1
+
         function jogar() {    
             // Objeto TOP LEFT
             ctx.fillStyle = "white"
             ctx.strokeStyle = circulo.cor
             ctx.beginPath();
-            ctx.arc(P_TL-2,P_TL-2, circulo.r, 0.96*Math.PI, 1.53*Math.PI);
+            ctx.arc(P_TL-velocidade*2,P_TL-velocidade*2, circulo.r, 0.96*Math.PI, 1.53*Math.PI);
             ctx.fill()
 
             ctx.fillStyle = cor_TL
@@ -125,13 +127,13 @@
             ctx.lineTo(P_TL - 25,P_TL)
             ctx.lineTo(P_TL,P_TL - 25)
             ctx.fill()
-            P_TL += 1
+            P_TL += velocidade
             
             // Objeto BOT RIGHT
             ctx.fillStyle = "white"
             ctx.strokeStyle = circulo.cor
             ctx.beginPath();
-            ctx.arc(P_BR+2,P_BR+2, circulo.r, 1.95*Math.PI, 0.54*Math.PI);
+            ctx.arc(P_BR+velocidade*2,P_BR+velocidade*2, circulo.r, 1.95*Math.PI, 0.54*Math.PI);
             ctx.fill()
 
             ctx.fillStyle = cor_BR
@@ -141,13 +143,13 @@
             ctx.lineTo(P_BR + 25,P_BR)
             ctx.lineTo(P_BR,P_BR + 25)
             ctx.fill()
-            P_BR -= 1
+            P_BR -= velocidade
 
             // Objeto TOP RIGHT
             ctx.fillStyle = "white"
             ctx.strokeStyle = circulo.cor
             ctx.beginPath();
-            ctx.arc(TRX+2,TRY-2, circulo.r, 1.45*Math.PI, 0.04*Math.PI);
+            ctx.arc(TRX+velocidade*2,TRY-velocidade*2, circulo.r, 1.45*Math.PI, 0.04*Math.PI);
             ctx.fill()
 
             ctx.fillStyle = cor_TR
@@ -157,14 +159,14 @@
             ctx.lineTo(TRX + 25,TRY)
             ctx.lineTo(TRX,TRY - 25)
             ctx.fill()
-            TRX -= 1
-            TRY += 1
+            TRX -= velocidade
+            TRY += velocidade
 
             // Objeto TOP RIGHT
             ctx.fillStyle = "white"
             ctx.strokeStyle = circulo.cor
             ctx.beginPath();
-            ctx.arc(BLX-2,BLY+2, circulo.r, 0.45*Math.PI, 1.04*Math.PI);
+            ctx.arc(BLX-velocidade*2,BLY+velocidade*2, circulo.r, 0.45*Math.PI, 1.04*Math.PI);
             ctx.fill()
 
             ctx.fillStyle = cor_BL
@@ -174,8 +176,8 @@
             ctx.lineTo(BLX - 25,BLY)
             ctx.lineTo(BLX,BLY + 25)
             ctx.fill()
-            BLX += 1
-            BLY -= 1
+            BLX += velocidade
+            BLY -= velocidade
 
             // Se objetos estiverem no centro
                 if (P_BR == 300){
@@ -270,6 +272,10 @@
             
             
             requestAnimationFrame(desenho)
+        }
+
+        function iniciar() {
+            jogar()
         }
 
         desenho()

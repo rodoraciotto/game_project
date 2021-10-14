@@ -1,0 +1,93 @@
+.container{
+    margin: 0;
+    padding: 0;
+}
+.content{
+    border: 2px solid rgba(0, 0, 0, 0.7);
+    background-color: lightskyblue;
+    padding: 20px;
+    width: auto;
+    height: auto;
+    margin: 20px;
+}
+.header{
+    border-radius: 0;
+	background-color: lightskyblue;
+    padding: 20px;
+}
+.btn{
+    font-size: 16px; 
+    position: relative;
+    text-align: center;
+    color:lightskyblue;
+    background-color: gray;
+    border: 2px outset black;
+    border-radius: 10px;
+    padding: 8px;
+}
+.btn:hover{
+    color: black;
+    background-color: darksalmon;
+    cursor: pointer;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+.pages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+.nav{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: darksalmon;
+    margin: 0;
+}
+.row{
+    margin: 30px;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.box{
+    float: left;
+    width: 50%;
+}
+h3{
+    display: flex;
+    justify-content: left;
+    margin: 0;
+}
+li{
+    font-size: 16px;
+    padding: 5px;
+}
+.bloco{
+    background-color: black;
+    height: 2px;
+}
+#test{
+    width: 600px;
+    height: auto;
+    margin: 0px auto;
+    background-color: lightskyblue;
+    padding: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.7);    
+}
+#iniciar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+canvas{
+    background-color: white;
+}
