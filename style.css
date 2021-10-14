@@ -33,7 +33,7 @@
 .title{
     display: flex;
     justify-content: center;
-    font-size: 30px;
+    font-size: 40px;
 }
 .pages{
     display: flex;
@@ -90,4 +90,18 @@ li{
 }
 canvas{
     background-color: white;
+}
+.gif{
+    padding: 15px;
+}
+.explica{
+    font-size: 20px;
+    padding: 15px;
+}
+.flex{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: auto;
+    height: auto;
 }
