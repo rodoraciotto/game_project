@@ -274,8 +274,24 @@
             requestAnimationFrame(desenho)
         }
 
-        function iniciar() {
-            jogar()
+        // execute essa função para atualizar a página
+        function recarregarPagina() {
+            sessionStorage.setItem("recarregou", "true"); // antes de atualizar, você seta uma variável no sessionStorage como true
+            window.location.reload(); // atualiza a página
         }
+
+        // aqui você recupera a variável que você setou (ou não) na sessionStorage
+        var recarregou = sessionStorage.getItem("recarregou");
+
+        function iniciar() {
+            recarregarPagina()
+        }
+        
+        // verifica que a página foi atualizada
+        if (recarregou) {
+            sessionStorage.removeItem("recarregou"); // remove a variável
+            jogar(); // executa sua função
+        }
+
 
         desenho()
